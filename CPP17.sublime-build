@@ -1,0 +1,7 @@
+{
+	"cmd":["g++.exe","-w","-o","$file_base_name","$file","&&","start","cmd","/c","color B7 & $file_base_name & echo. & echo.& color 3F & pause"],
+	 "shell":true,
+	"selector":"source.c++",
+	 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+     "working_dir": "${file_path}",
+}

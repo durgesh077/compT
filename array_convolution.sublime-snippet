@@ -1,0 +1,86 @@
+<snippet>
+	<content><![CDATA[
+const ll mod = 998244353, maxn = 3e6;
+ll a[maxn], b[maxn];
+
+void fft(ll w0, ll n, ll* a)
+{
+    for (ll i = 0, j = 0; i < n; i++) {
+
+        if (i < j)
+            swap(a[i], a[j]);
+
+        ll bit = n >> 1;
+
+        for (; j & bit; bit >>= 1)
+            j ^= bit;
+        j ^= bit;
+    }
+
+    for (ll len = 2; len <= n; len <<= 1) {
+
+        ll wlen = w0;
+        for (ll aux = n; aux > len; aux >>= 1) {
+            wlen = wlen * wlen % mod;
+        }
+
+        for (ll bat = 0; bat + len <= n; bat += len) {
+
+            for (ll i = bat, w = 1; i < bat + len / 2;
+                i++, w = w * wlen % mod) {
+
+                ll u = a[i], v = w * a[i + len / 2] % mod;
+
+                a[i] = (u + v) % mod,
+
+                    a[i + len / 2]
+                    = ((u - v) % mod + mod) % mod;
+            }
+        }
+    }
+}
+
+ll binpow(ll a, ll x)
+{
+    ll ans = 1;
+
+    for (; x; x /= 2, a = a * a % mod) {
+
+        if (x & 1)
+            ans = ans * a % mod;
+    }
+
+    return ans;
+}
+
+ll inv(ll a) { return binpow(a, mod - 2); }
+
+vector<ll> findConvolution(ll a[], ll b[], ll n, ll m)
+{
+    vector<ll>ans;
+    ans.reserve(n+m);
+    ll _n = 1ll << 64 - __builtin_clzll(n + m);
+
+    ll w = 15311432;
+    for (ll aux = 1 << 23; aux > _n; aux >>= 1)
+        w = w * w % mod;
+
+    fft(w, _n, a);
+    fft(w, _n, b);
+
+    for (ll i = 0; i < _n; i++)
+        a[i] = a[i] * b[i] % mod;
+
+    fft(inv(w), _n, a);
+    for (ll i = 0; i < _n; i++)
+        a[i] = a[i] * inv(_n) % mod;
+    for (ll i = 0; i < n + m - 1; i++)
+        ans.push_back(a[i]);
+    return ans;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>convolution</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

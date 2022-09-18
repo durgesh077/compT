@@ -1,0 +1,6 @@
+{
+    "file_regex": "(.+):(\\d+): error: ",
+    "shell_cmd": "javac --release 8 $file && java $file_base_name",
+    "shell": true,
+    "selector": "source.java",
+}

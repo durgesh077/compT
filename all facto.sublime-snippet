@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+void afctr(vector<int> &a,int n)
+{
+   vector<int> bck;
+   for(int i=1;i*i<=n;i++)
+   {
+    	if(n%i==0)a.pb(i),bck.pb(n/i);
+   if(i*i==n)
+   	bck.pop_back();
+   }
+   while(bck.size())
+   	a.pb(bck.back()),bck.pop_back();
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>afctr</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

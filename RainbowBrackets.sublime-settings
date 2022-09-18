@@ -1,0 +1,59 @@
+{
+    // mode:
+    // - part:
+    //    highlight all brackets, not suitable for very large file editing.
+    // - part:
+    //    only highlight brackets near to the cursor point with a threshod.
+    //    the color of each bracket depends on the cursor's position.
+    //    not applicable to multiple cursor editing.
+    
+    "maxsize": 20000, // for part mode.
+
+    "brackets": {
+        "(": ")",
+        "[": "]",
+        "{": "}"
+    },
+
+    "languages": {
+        "scheme": {
+            "extensions": ["scm", "ss"],
+            "mode": "all"
+        },
+        "json": {
+            // 将扩展名列在 "extensions" 中的文件按 JSON 文件处理
+            // treat files whose extension is listed
+            // in "extensions" as JSON file.
+            "extensions": [
+                "json",
+                "sublime-settings",
+                "sublime-menu",
+                "sublime-build",
+                "sublime-keymap",
+                "sublime-color-scheme"
+            ],
+            // 搜索全文内容以匹配所有括号
+            // Search full text to match brackets.
+            "mode": "all",
+            // 将该文件类型不需要的括号添加到这儿，以加快搜索速度
+            // To speed up the search, add brackets which are not nessesary by this file type to "!brackets"
+            "!brackets": ["("]
+        }
+    },
+    "rainbow_colors": {
+        "matched": [
+            "#A0FC0E",
+            "#13DCF4",
+            "#00FA00",
+            "#0041FF",
+            "#0094FF",
+            "#FF0000",
+            "#FF6A00",
+            "#FFD800",
+            "#F86311",
+            "#00FF00",
+            "#7D00E5"
+        ],
+        "unmatched": "#FF0000"
+    }
+}

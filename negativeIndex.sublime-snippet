@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+template<typename T,int mid=0>
+struct Vector:vector<T>
+{
+  Vector(initializer_list<T>lst):vector<T>(lst){}
+  Vector(){}
+  Vector(int _n,T _val=0):vector<T>(_n,_val){}
+  T& operator[](int ind)
+  {
+    return vector<T>::operator[](ind-mid);
+  }
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>nindex</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

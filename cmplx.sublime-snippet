@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+#define x real()
+#define y imag()
+typedef complex<${1:double}> point;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>cmplx</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>

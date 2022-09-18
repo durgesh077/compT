@@ -1,0 +1,7 @@
+{
+	"cmd":["go", "build", "-o", "$file_base_name.exe" ,"$file","&&","start","cmd","/c","color 0F & $file_base_name.exe & echo. & echo.& color B0 & pause"],
+	 "shell":true,
+	"selector":"source.go",
+	 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+     "working_dir": "${file_path}",
+}

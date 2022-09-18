@@ -1,0 +1,64 @@
+<snippet>
+	<content><![CDATA[
+struct CHT
+{
+  #define m first
+  #define c second
+  double getXisect(const pair<int,int>&l1,const pair<int,int>&l2)const
+  {
+    return double(l2.c-l1.c)/(l1.m-l2.m);
+  }
+
+
+  double getY(const pair<int,int>&line,int x)const
+  {
+    return line.m*x+line.c;
+  }
+
+  void add(const pair<int,int>&New)
+  {
+    if(hull.size() and hull.back().first==New.first)
+      hull.pop_back();
+
+    while(hull.size()>1)
+    {
+      const auto last=hull.back();
+      const auto pen=hull[hull.size()-2];
+      double Xln=getXisect(last,New);
+      double Xlp=getXisect(pen,last);
+
+      if(Xlp >Xln)
+        hull.pop_back();
+      else
+        break;
+    }
+    hull.push_back(New);
+  }
+  bool ok(int mid,int x)
+  {
+    return getY(hull[mid-1],x)<getY(hull[mid],x);
+  }
+  int findMaxJ4(int x)
+  {
+    int l=0,r=hull.size();
+    while(l+1<r)
+    {
+      int mid=l+r>>1;
+      (ok(mid,x)?l:r)=mid;
+    }
+    return l;
+  }
+  int findMaxY(int x)
+  {
+    return getY(hull[findMaxJ4(x)],x);
+  }
+  deque<pair<int,int>>hull;
+  #undef m 
+  #undef c   
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>CHT</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

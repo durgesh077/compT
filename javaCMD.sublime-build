@@ -1,0 +1,7 @@
+{
+  "cmd":["javac", "$file_name", "&&", "start", "cmd", "/c" ,"java $file_base_name && color b0 && pause"],
+  "selector": "source.java",
+  "working_dir": "${file_path}",
+  "file_regex": "(.+):(\\d+): error: ",
+  "shell": true 
+}

@@ -1,0 +1,38 @@
+<snippet>
+	<content><![CDATA[
+	#include <bits/stdc++.h>
+	#define endl "\n"
+	#define ll long long int
+	#define vi vector<int>
+	#define vvi vector < vi >
+	#define pii pair<int,int>
+	#define mod 1000000007
+	#define inf 1000000000000000001;
+	#define all(c) c.begin(),c.end()
+	#define mp(x,y) make_pair(x,y)
+	#define mem(a,val) memset(a,val,sizeof(a))
+	#define eb emplace_back
+  #define pb push_back
+  #define f first
+  #define s second
+  #define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+  #define endl "\n" 
+	using namespace std;
+	int main()
+	{
+	  IOS;
+		${1:int T;
+		cin>>T;
+		while(T--)
+		{
+		$2	
+		}}
+		return 0;
+	}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>comp</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+      <scope>source.c++</scope>
+</snippet>

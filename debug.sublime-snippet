@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+#ifndef ONLINE_JUDGE
+ofstream fout("out.txt");
+#define dbg(x) fout<<#x<<":= "<<x<<"\n"
+#else
+#define dbg(x)
+#endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dbg</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

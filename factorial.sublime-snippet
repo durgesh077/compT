@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+vector<ll> _fact{1,1};
+ll factorial(int n,ll p=1e18)
+{
+  for(int i=_fact.size();i<=n;i++)
+  {
+    _fact.pb((_fact.back()*i)%p);
+  }
+  return _fact[n];
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>fact</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

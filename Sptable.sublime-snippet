@@ -1,0 +1,91 @@
+<snippet>
+	<content><![CDATA[
+template<typename T,T (*op)(T,T),T (*e)()>
+struct sptable 
+{
+  
+  sptable(const vector<T>&_v)
+  {
+    n=_v.size();
+    int clg=int(log2(n))+1;
+    sp.assign(n,vector<T>(clg));
+    for(int i=0;i<n;i++)
+    {
+      sp[i][0]=_v[i];
+    }
+    create();
+  }
+  void create()
+  {
+      for(int j=2,ji=1;(j)<=n;j<<=1,ji++)
+      {
+        for(int i=0;i+j<=n;i++)
+        {
+          sp[i][ji]=op(sp[i][ji-1],sp[i+(j)/2][ji-1]); 
+        }
+      }
+  }
+  T prod1(int from,int to)
+  {
+    if(from==to)
+      return e();
+    assert(from>=0 and to<=n);
+    to--;
+    T ans=e();
+    int dif=to-from+1;
+    int bs=log2(dif);
+    ans=op(ans,sp[from][bs]);
+    int tbs=1<<bs;
+    int ind=to-tbs+1;
+    ans=op(ans,sp[ind][bs]);
+    return ans;
+  }
+  T all_prod1()
+  {
+    return prod1(0,n);
+  }
+  T prod(int from,int to)
+  {
+    if(from==to)
+      return e();
+    assert(from>=0 and to<=n);
+    to--;
+    assert(from>=0 and from<n and to>=from and to<n);
+    int dif=to-from+1;
+    T ans =e();
+    int cur=from;
+    while(dif>0)
+    {
+      int bs=log2(dif);
+      ans=op(ans,sp[cur][bs]);
+      bs=1<<bs;
+      cur+=bs;
+      dif=to-cur+1;
+    }
+    return ans;
+  }
+  T all_prod()
+  {
+    return prod(0,n);
+  }
+private:
+  vector<vector<T>>sp;
+  int n;
+  int sb;
+};
+using S=int;
+S op(S a,S b)
+{
+  return max(a,b);
+}
+S e()
+{
+  return -(1<<30);
+}
+using SPTable=sptable<S,op,e>;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sptable</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

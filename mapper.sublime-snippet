@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+template<typename T,typename F>
+auto operator<<(T &col,F f)->vector<decltype(f(*col.begin()))>
+{vector<decltype(f(*col.begin()))> temp;for(auto &it:col)temp.pb(f(it));return temp;}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mapper</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

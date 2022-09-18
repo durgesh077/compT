@@ -1,0 +1,50 @@
+<snippet>
+	<content><![CDATA[
+#define PMXSZ 100005
+int spf[PMXSZ];
+bitset<PMXSZ>isprime;
+vector<int>primes;
+bool msieve(int N)
+{
+	assert(N<PMXSZ);
+	isprime.set();
+	for(int i=2;i<=N;i++)
+	{
+		if(isprime[i])primes.pb(i),spf[i]=i;
+		for(int j=0;j<primes.size() and primes[j]<=spf[i] and i*primes[j]<=N;j++)
+			isprime[i*primes[j]]=false,spf[i*primes[j]]=primes[j];
+	}
+	return true;
+}
+
+void fctr(vector<int>&ds,int a,bool oc=true)
+{
+	while(a>1)
+	{
+		const int Spf=spf[a];
+		ds.pb(Spf);
+		a/=Spf;
+
+		while(oc and a%Spf==0)
+			a/=Spf;
+	}
+}
+void fctr(map<int,int>&ds,int a,bool oc=true)
+{
+	while(a>1)
+	{
+		const int Spf=spf[a];
+		ds[Spf]++;
+		a/=Spf;
+
+		while(oc and a%Spf==0)
+			a/=Spf;
+	}
+}
+bool _=msieve(PMXSZ-3);
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mseive</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

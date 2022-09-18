@@ -1,0 +1,47 @@
+<snippet>
+	<content><![CDATA[
+template<typename T>
+istream& operator>>(istream& is,vector<T>&v)
+{
+  for(auto &it:v)
+    is>>it;
+  return is;
+}
+istream& operator>>(istream& is,pair<int,int>&pr)
+{
+  is>>pr.first>>pr.second;
+  return is;
+}
+template<typename T>
+ostream& operator<<(ostream& os,vector<T>&v)
+{
+  for(auto it:v)
+    os<<it<<" ";
+  os<<endl;
+  return os;
+}
+ostream& operator<<(ostream& os,pair<int,int> pr)
+{
+  os<<'('<<pr.first<<","<<pr.second<<") ";
+  return os;
+}
+template<typename T=int>
+inline T input(T a=0)
+{
+  cin>>a;
+  return a;
+}
+struct PRT{
+template<typename T=int>
+inline PRT operator()(T a=0,string str=" ")
+{
+  cout<<a<<str;
+  return *this;
+}
+}print;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>take</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
